@@ -38,7 +38,7 @@ exit
 Installation and Usage
 Clone the Repository:
 
-git clone [<repository_url>](https://github.com/Flutevishnu/Ei-Study)
+git clone (https://github.com/Flutevishnu/Ei-Study)
 cd Ei-Study/Realtime-chat-application (Excercise 2)
 Install Dependencies:
 
