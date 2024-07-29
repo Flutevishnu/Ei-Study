@@ -11,20 +11,9 @@ const rl = readline.createInterface({
     output: process.stdout
   });
 
-// // Create or join a chat room
-// chatService.createOrJoinRoom('Room123', 'Alice');
-// chatService.createOrJoinRoom('Room123', 'Bob');
-
-// // Send messages
-// chatService.sendMessage('Room123', 'Alice', 'Hello, everyone!');
-// chatService.sendMessage('Room123', 'Bob', 'How\'s it going?');
-
-// // Display active users
-// chatService.displayActiveUsers('Room123');
-
 const promptUser = (): void => {
-    rl.question('Enter command (join [roomID] [username], send [roomID] [username] [message], show users [roomID], exit): ', (command) => {
-      const [action, roomId, username, ...messageParts] = command.split(' ');
+    rl.question('\nEnter command :\n1) join [roomID] [username]\n2) leave [roomID] [username]\n3) send [roomID] [username] [message]\n4) show users [roomID]\n5) exit \n\n', (command) => {
+      const [action, roomId, username,recipient, ...messageParts] = command.split(' ');
       const message = messageParts.join(' ');
   
       switch (action) {
@@ -35,6 +24,14 @@ const promptUser = (): void => {
             console.log('Invalid command. Usage: join [roomID] [username]');
           }
           break;
+        
+        case 'leave':
+          if(roomId && username) {
+            chatService.leaveroom(roomId, username);
+          } else {
+            console.log('Invalid command. Usage: leave [roomID] [username]')
+          }
+          break;
   
         case 'send':
           if (roomId && username && message) {
@@ -43,7 +40,6 @@ const promptUser = (): void => {
             console.log('Invalid command. Usage: send [roomID] [username] [message]');
           }
           break;
-  
         case 'show':
           if (roomId) {
             chatService.displayActiveUsers(roomId);

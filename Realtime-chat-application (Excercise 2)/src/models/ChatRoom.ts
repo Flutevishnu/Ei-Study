@@ -26,6 +26,7 @@ export class ChatRoom {
   }
 
   addMessage(message: Message): void {
+    this.getMessages().forEach(message => console.log(`[${this.id}] ${message.user.name}: ${message.content}`))
     this.messages.push(message);
     console.log(`[${this.id}] ${message.user.name}: ${message.content}`);
   }
@@ -36,5 +37,9 @@ export class ChatRoom {
 
   getUsers(): User[] {
     return this.users;
+  }
+
+  getUserByName(name: string): User | undefined {
+    return this.users.find(user => user.name === name);
   }
 }

@@ -15,6 +15,19 @@ export class ChatService {
     this.rooms[roomId] = room;
   }
 
+  leaveroom(roomId: string, userName: string): void{
+    let room = this.rooms[roomId];
+    if (room) {
+      let user = room.getUsers().find(u=> u.name === userName)
+      if (user) {
+        room.removeUser(user)
+      }
+    }
+    else {
+      console.log("There is no room with id "+ roomId)
+    }
+  }
+
   sendMessage(roomId: string, userName: string, messageContent: string): void {
     let room = this.rooms[roomId];
     if (room) {
@@ -25,10 +38,14 @@ export class ChatService {
         this.chatObserver.sendMessage(roomId, `${userName}: ${messageContent}`);
       }
       else {
-        console.log(userName + "Not in the " + roomId)
+        console.log(userName + " Not in the " + roomId)
       }
     }
+    else{
+      console.log("There is no room with id "+ roomId)
+    }
   }
+
 
   displayActiveUsers(roomId: string): void {
     let room = this.rooms[roomId];
