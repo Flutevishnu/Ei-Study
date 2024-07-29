@@ -24,6 +24,9 @@ export class ChatService {
         room.addMessage(message);
         this.chatObserver.sendMessage(roomId, `${userName}: ${messageContent}`);
       }
+      else {
+        console.log(userName + "Not in the " + roomId)
+      }
     }
   }
 
