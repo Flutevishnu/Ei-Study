@@ -1,40 +1,23 @@
-class DataBaseConnection {
-    private static instance: DataBaseConnection;
-    private connection: String
-    private constructor(){
-        this.connection = this.createConnection();
-    }
+import DataBaseConnection from './DataBaseConnection';
 
-    public static getInstance(): DataBaseConnection {
-        if (!DataBaseConnection.instance){
-            DataBaseConnection.instance = new DataBaseConnection();
+class App {
+    public static main(): void {
+        const dbConnection1 = DataBaseConnection.getInstance();
+        const connection1 = dbConnection1.getConnection();
+        console.log(connection1);
+
+        const dbConnection2 = DataBaseConnection.getInstance();
+        const connection2 = dbConnection2.getConnection();
+        console.log(connection2);
+
+        if (connection1 === connection2) {
+            console.log('Singleton Worked');
+        } else {
+            console.log('Singleton not worked');
         }
-        return DataBaseConnection.instance
-    }
 
-    private createConnection(): String{
-        console.log('Creating new MySQL database connection...');
-        return `host: 'localhost', user: 'user', password: 'password', database: 'testdb'`;
-    }
-
-    public getConnection(){
-        return this.connection
-    }
-
-    public CloseConnection(){
-        console.log("Closing DataBase connection")
+        dbConnection1.closeConnection();
     }
 }
 
-const dbconnection1 = DataBaseConnection.getInstance();
-const connection1 = dbconnection1.getConnection();
-console.log(connection1)
-const dbconnection2 = DataBaseConnection.getInstance();
-const connection2 = dbconnection1.getConnection();
-console.log(connection2)    
-if (connection1 == connection2) {
-    console.log("Singleton Worked")
-}
-else {
-    console.log("Singleton not worked")
-}
+App.main();

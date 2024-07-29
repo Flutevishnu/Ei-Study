@@ -24,7 +24,7 @@ const promptUser = (): void => {
             console.log('Invalid command. Usage: join [roomID] [username]');
           }
           break;
-        
+           
         case 'leave':
           if(roomId && username) {
             chatService.leaveroom(roomId, username);
