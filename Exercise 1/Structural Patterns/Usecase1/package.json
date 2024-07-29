@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "typescript": "^5.5.4"
+  },
+  "name": "usecase1",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
