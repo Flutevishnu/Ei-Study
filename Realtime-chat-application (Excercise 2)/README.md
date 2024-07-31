@@ -20,16 +20,16 @@ This Real-Time Chat Application is a console-based chat system developed in Type
 - **Message Persistence:** Messages persist even if users leave and rejoin the chat room.
 
 ## Project Structure
-/src
-    /adapters
-        WebSocketAdapter.ts
-        HttpAdapter.ts
-    /models
-        ChatRoom.ts
-        Message.ts
-        User.ts
-    /observers
-        ChatObserver.ts
-    /services
-        ChatService.ts
+/src<br />
+    /adapters<br />
+        WebSocketAdapter.ts<br />
+        HttpAdapter.ts<br />
+    /models<br />
+        ChatRoom.ts<br />
+        Message.ts<br />
+        User.ts<br />
+    /observers<br />
+        ChatObserver.ts<br />
+    /services<br />
+        ChatService.ts<br />
     index.ts
