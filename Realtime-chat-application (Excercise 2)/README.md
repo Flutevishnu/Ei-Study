@@ -21,15 +21,15 @@ This Real-Time Chat Application is a console-based chat system developed in Type
 
 ## Project Structure
 /src<br />
-    /adapters<br />
-        WebSocketAdapter.ts<br />
-        HttpAdapter.ts<br />
-    /models<br />
-        ChatRoom.ts<br />
-        Message.ts<br />
-        User.ts<br />
-    /observers<br />
-        ChatObserver.ts<br />
-    /services<br />
-        ChatService.ts<br />
-    index.ts
+    &emsp;/adapters<br />
+    &emsp;&emsp;WebSocketAdapter.ts<br />
+        &emsp;&emsp;HttpAdapter.ts<br />
+    &emsp;/models<br />
+        &emsp;&emsp;ChatRoom.ts<br />
+        &emsp;&emsp;Message.ts<br />
+        &emsp;&emsp;User.ts<br />
+    &emsp;/observers<br />
+        &emsp;&emsp;ChatObserver.ts<br />
+    &emsp;/services<br />
+        &emsp;&emsp;ChatService.ts<br />
+    &emsp;index.ts
