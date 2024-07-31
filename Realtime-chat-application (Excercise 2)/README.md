@@ -33,3 +33,68 @@ This Real-Time Chat Application is a console-based chat system developed in Type
     &emsp;/services<br />
         &emsp;&emsp;ChatService.ts<br />
     &emsp;index.ts
+
+## Getting Started
+
+### Prerequisites
+
+- **Node.js**: Ensure you have Node.js installed (v14 or later is recommended).
+- **npm**: Ensure you have npm installed (v6 or later).
+- **TypeScript**: Ensure you have TypeScript installed. If not, you can install it globally using:
+  ```sh
+  npm install -g typescript
+
+### Installation
+
+1. **Clone the Repository:**   
+    First, clone the repository to your local machine using the following command:
+   ```sh
+   git clone https://github.com/Flutevishnu/Ei-Study
+
+2. **Navigate to the Project Directory:**
+    Change to the project directory:
+    ```sh
+    cd Ei-Study/Realtime-chat-application (Excercise 2)/src
+
+3. **Run the Application:**
+    To Run
+    ```sh
+    npx ts-node index.ts
+
+
+## Available Commands
+
+1. **Join a Chat Room**:
+   To join a chat room, use the following command:
+   ```sh
+   join [roomID] [username]
+
+- **Description:** Allows a user to join a specified chat room with a unique room ID.
+- **Example:** join Room123 Alice
+
+2. **Leave a Char Room**
+    To Leave a chat room, use the following command:
+    ```sh
+    leave [roomID] [username]
+- **Description:** Allows a user to leave a specified chat room with a unique room ID.
+- **Example:** leave Room123 Alice
+
+3. **Send a Message**
+    To send a message within a chat room, use:
+    ```sh
+    send [roomID] [username] [message]
+- **Description:** Sends a message to all users within the specified chat room.
+- **Example:** send Room123 Alice Hello everyone!
+
+4. **Show Active Users:**
+    To display the list of active users in a chat room, use:
+    ```sh
+    show [roomID]
+- **Description:** Lists all active users currently in the specified chat room.
+- **Example:** show Room123
+
+5. **Exit the Application:**
+    To exit the application, simply use:
+    ```sh
+    exit
+- **Description:** Terminates the chat application session.
