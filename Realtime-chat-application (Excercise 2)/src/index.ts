@@ -13,7 +13,7 @@ const rl = readline.createInterface({
 
 const promptUser = (): void => {
     rl.question('\nEnter command :\n1) join [roomID] [username]\n2) leave [roomID] [username]\n3) send [roomID] [username] [message]\n4) show users [roomID]\n5) exit \n\n', (command) => {
-      const [action, roomId, username,recipient, ...messageParts] = command.split(' ');
+      const [action, roomId, username, ...messageParts] = command.split(' ');
       const message = messageParts.join(' ');
   
       switch (action) {
