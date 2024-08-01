@@ -1,5 +1,6 @@
 import { User } from './User';
 import { Message } from './Message';
+import { Logger } from '../utils/Logger';
 
 export class ChatRoom {
   private static instances: { [key: string]: ChatRoom } = {};
@@ -11,6 +12,7 @@ export class ChatRoom {
   public static getInstance(id: string): ChatRoom {
     if (!this.instances[id]) {
       this.instances[id] = new ChatRoom(id);
+      Logger.log(`Created new chat room with ID ${id}`);
     }
     return this.instances[id];
   }
@@ -26,9 +28,20 @@ export class ChatRoom {
   }
 
   addMessage(message: Message): void {
-    this.getMessages().forEach(message => console.log(`[${this.id}] ${message.user.name}: ${message.content}`))
+    this.getMessages().forEach(message => console.log(`[${this.id}] ${message.timestamp}: ${message.user.name}: ${message.content}`))
     this.messages.push(message);
-    console.log(`[${this.id}] ${message.user.name}: ${message.content}`);
+    console.log(`[${this.id}] ${new Date()}: [${this.id}] ${message.user.name}: ${message.content}`);
+    console.log("\n\n")
+    this.notifyUsers(message)
+  }
+
+  private notifyUsers(message: Message) {
+    this.users.forEach(user => {
+      if (user != message.user) {
+        console.log(`Notifying ${user.name} about new message: (${message.user.name} :${message.content})`);
+      } 
+      
+    })
   }
 
   getMessages(): Message[] {

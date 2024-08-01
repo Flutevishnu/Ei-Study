@@ -2,6 +2,7 @@ import { ChatRoom } from '../models/ChatRoom';
 import { User } from '../models/User';
 import { Message } from '../models/Message';
 import { ChatObserver } from '../observers/ChatObserver';
+import { Logger } from '../utils/Logger';
 
 export class ChatService {
   private rooms: { [key: string]: ChatRoom } = {};
@@ -22,9 +23,12 @@ export class ChatService {
       if (user) {
         room.removeUser(user)
       }
+      else {
+        Logger.warn('${userName} is not inside the ${roomId}')
+      }
     }
     else {
-      console.log("There is no room with id "+ roomId)
+      Logger.warn(`Room with ID ${roomId} does not exist`);
     }
   }
 
@@ -38,11 +42,11 @@ export class ChatService {
         this.chatObserver.sendMessage(roomId, `${userName}: ${messageContent}`);
       }
       else {
-        console.log(userName + " Not in the " + roomId)
+        Logger.warn('${userName} is not inside the ${roomId}')
       }
     }
     else{
-      console.log("There is no room with id "+ roomId)
+      Logger.warn(`Room with ID ${roomId} does not exist`)
     }
   }
 
