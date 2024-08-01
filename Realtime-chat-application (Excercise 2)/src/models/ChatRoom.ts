@@ -6,13 +6,16 @@ export class ChatRoom {
   private static instances: { [key: string]: ChatRoom } = {};
   private users: User[] = [];
   private messages: Message[] = [];
+  private isPrivate: boolean
 
-  private constructor(private id: string) {}
+  private constructor(private id: string, isPrivate: boolean) {
+    this.isPrivate = isPrivate;
+  }
 
-  public static getInstance(id: string): ChatRoom {
+  public static getInstance(id: string, isPrivate= false): ChatRoom {
     if (!this.instances[id]) {
-      this.instances[id] = new ChatRoom(id);
-      Logger.log(`Created new chat room with ID ${id}`);
+      this.instances[id] = new ChatRoom(id, isPrivate);
+      Logger.log(`\nCreated new chat room with ID ${id}`);
     }
     return this.instances[id];
   }
