@@ -48,7 +48,7 @@ const promptUser = (): void => {
           break;
         
           case 'private':
-              rl.question('Enter [userName] [recipient name] [message]', (privateCommand) => {
+              rl.question('Enter [userName] [recipient name] [message] : ', (privateCommand) => {
                 const [userName, recipient_name, ...messageParts] = privateCommand.split(' ')
                 if(userName && recipient_name && messageParts) {
                   const privateMessage = messageParts.join(' ')
