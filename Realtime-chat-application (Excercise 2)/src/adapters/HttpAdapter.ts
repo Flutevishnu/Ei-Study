@@ -7,7 +7,7 @@ export class HttpAdapter extends ChatObserver {
   }
 
   sendMessage(roomId: string, message: string): void {
-    console.log(`[HTTP] Message sent to ${roomId}: ${message}`);
+    console.log(`[HTTP] Message sent to ${roomId}: (${message})`);
   }
 
   receiveMessage(): void {

@@ -19,7 +19,7 @@ export class ChatService {
       room.addUser(user);
       this.rooms[roomId] = room;
     } else {
-      Logger.warn("This room doesn't allow anyone to join")
+      Logger.warn("This room doesn't allow anyone to join , It is private room")
     }
   }
 
@@ -77,7 +77,7 @@ export class ChatService {
       if (user) {
         let message = new Message(user, messageContent);
         room.addMessage(message);
-        this.chatObserver.sendMessage(roomId, `${senderName}: ${messageContent}`);
+        this.chatObserver.sendMessage(recipientName, `${senderName}: ${messageContent}`);
       }
       else {
         Logger.warn(`\n${senderName} is not inside the ${roomId}`)

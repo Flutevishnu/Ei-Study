@@ -8,7 +8,7 @@ export class WebSocketAdapter extends ChatObserver {
 
   sendMessage(roomId: string, message: string): void {
 
-    console.log(`[WebSocket] Message sent to ${roomId}: ${message}`);
+    console.log(`[WebSocket] Message sent to ${roomId}: (${message})  `);
   }
 
   receiveMessage(): void {

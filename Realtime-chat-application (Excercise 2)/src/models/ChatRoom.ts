@@ -36,9 +36,9 @@ export class ChatRoom {
   }
 
   addMessage(message: Message): void {
-    this.getMessages().forEach(message => console.log(`[${this.isPrivate?this.id:""}] ${message.timestamp}: ${message.user.name}: ${message.content}`))
+    this.getMessages().forEach(message => console.log(`${this.isPrivate?"":[this.id]} ${message.timestamp}: ${message.user.name}: ${message.content}`))
     this.messages.push(message);
-    console.log(`  [${this.isPrivate?this.id:""}] ${new Date()}: [${this.id}] ${message.user.name}: ${message.content}`);
+    console.log(`${this.isPrivate?"":[this.id]} ${new Date()}: ${message.user.name}: ${message.content}`);
     console.log("\n\n")
     this.notifyUsers(message)
   }
