@@ -15,14 +15,19 @@ export class ChatRoom {
   public static getInstance(id: string, isPrivate= false): ChatRoom {
     if (!this.instances[id]) {
       this.instances[id] = new ChatRoom(id, isPrivate);
-      Logger.log(`\nCreated new chat room with ID ${id}`);
+      if (!isPrivate) {
+        Logger.log(`\nCreated new chat room with ID ${id}`);
+      }
+      
     }
     return this.instances[id];
   }
 
   addUser(user: User): void {
     this.users.push(user);
-    console.log(`${user.name} joined ${this.id}`);
+    if (!this.isPrivate){
+      console.log(`${user.name} joined ${this.id}`);
+    }
   }
 
   removeUser(user: User): void {
@@ -31,9 +36,9 @@ export class ChatRoom {
   }
 
   addMessage(message: Message): void {
-    this.getMessages().forEach(message => console.log(`[${this.id}] ${message.timestamp}: ${message.user.name}: ${message.content}`))
+    this.getMessages().forEach(message => console.log(`[${this.isPrivate?this.id:""}] ${message.timestamp}: ${message.user.name}: ${message.content}`))
     this.messages.push(message);
-    console.log(`[${this.id}] ${new Date()}: [${this.id}] ${message.user.name}: ${message.content}`);
+    console.log(`  [${this.isPrivate?this.id:""}] ${new Date()}: [${this.id}] ${message.user.name}: ${message.content}`);
     console.log("\n\n")
     this.notifyUsers(message)
   }
@@ -57,5 +62,9 @@ export class ChatRoom {
 
   getUserByName(name: string): User | undefined {
     return this.users.find(user => user.name === name);
+  }
+
+  checkPrivate() {
+    return this.isPrivate
   }
 }

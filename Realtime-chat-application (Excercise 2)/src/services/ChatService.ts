@@ -10,13 +10,17 @@ export class ChatService {
 
   createOrJoinRoom(roomId: string, userName: string): void {
     let room = ChatRoom.getInstance(roomId);
-    if (room.getUserByName(userName)) {
-      Logger.warn(`\n${userName} is already inside the ${roomId}. Try a different username.`);
-      return
+    if(!room.checkPrivate()) {
+      if (room.getUserByName(userName)) {
+        Logger.warn(`\n${userName} is already inside the ${roomId}. Try a different username.`);
+        return
+      }
+      let user = new User(userName);
+      room.addUser(user);
+      this.rooms[roomId] = room;
+    } else {
+      Logger.warn("This room doesn't allow anyone to join")
     }
-    let user = new User(userName);
-    room.addUser(user);
-    this.rooms[roomId] = room;
   }
 
   leaveroom(roomId: string, userName: string): void{
@@ -65,7 +69,8 @@ export class ChatService {
   }
 
   sendPrivateMessage(senderName: string, recipientName: string, messageContent: string): void {
-    const roomId = [senderName+recipientName].sort().join('')
+    const temp = senderName+recipientName
+    const roomId = temp.split('').sort().join('')
     this.createPrivateRoom(roomId, senderName, recipientName);
     let room = this.rooms[roomId]
     let user = room.getUsers().find(u => u.name === senderName);

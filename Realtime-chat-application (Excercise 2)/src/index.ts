@@ -11,6 +11,11 @@ const rl = readline.createInterface({
     output: process.stdout
   });
 
+// const r2 = readline.createInterface({
+//     input: process.stdin,
+//     output: process.stdout
+//   })
+
 const promptUser = (): void => {
     rl.question('\nEnter command :\n1) join [roomID] [username]\n2) leave [roomID] [username]\n3) send [roomID] [username] [message]\n4) show users [roomID]\n5) exit \n\n', (command) => 
       {
@@ -42,19 +47,19 @@ const promptUser = (): void => {
           }
           break;
         
-        // case 'private':
-        //   const r2 = readline.createInterface({
-        //     input: process.stdin,
-        //     output: process.stdout
-        //   })
-        //   r2.question('[sendername] [recipientname] [message]', (input)=> {
-        //     const [senderName, recipientName, ...messagesplit] = input.split(' ');
-        //     const message = messagesplit.join(' ')
-        //     if (senderName && recipientName && message) {
-        //       chatService.sendPrivateMessage(senderName, recipientName, message);
-        //     }
-        //   })
-        //   break;
+          case 'private':
+              rl.question('Enter [userName] [recipient name] [message]', (privateCommand) => {
+                const [userName, recipient_name, ...messageParts] = privateCommand.split(' ')
+                if(userName && recipient_name && messageParts) {
+                  const privateMessage = messageParts.join(' ')
+                  chatService.sendPrivateMessage(userName, recipient_name, privateMessage)
+                }
+                promptUser();
+                
+              });
+              return; 
+              break;
+
         case 'show':
           if (roomId) {
             chatService.displayActiveUsers(roomId);
